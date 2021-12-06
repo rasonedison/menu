@@ -1,0 +1,28 @@
+{
+    "menu": [
+        {
+            "id": 1,
+            "name": "cae1",
+            "price": 123,
+            "desc": "ttt"
+        },
+        {
+            "id": 2,
+            "name": "cae2",
+            "price": 123,
+            "desc": "ttt"
+        },
+        {
+            "id": 3,
+            "name": "cae3",
+            "price": 123,
+            "desc": "ttt"
+        }
+    ],
+    "banner": {
+        "bannerId": 1,
+        "bannerName": "aaa",
+        "bannerUrl": "http://baidu.com",
+        "bannerImage": "https://img0.baidu.com/it/u=1736659654,3621498367&fm=26&fmt=auto"
+    }
+}

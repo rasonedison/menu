@@ -1,31 +1,41 @@
+import { fetchStartActionCreator,fetchEndActionCreator } from "../common/commonrReducer"
+import axios from "axios";
 
-// export interface LanguageState {
-//     language: "en" | "zh";
-//     languageList: { name: string; code: string }[];
-//   }
+// import { RootState } from "../store";
 
-const ADD_MENU = "ADD_MENU";
+  const FETCH_MENU_LIST_SUCCESS = "FETCH_MENU_LIST_SUCCESS";
   
-  const defaultState:any = [
-    {
-        id:1,
-        name: "cae",
-        price:123,
-        desc:"ttt"
-    },
-    {   
-        id:2,
-        name: "eee",
-        price:456,
-        desc:"dsfs"
-        }
-  ]
+  const defaultState:any = []
   
   export default (state = defaultState, action:any) => {
     switch (action.type) {
-      case ADD_MENU:
-        return { ...state};
+      case FETCH_MENU_LIST_SUCCESS:
+        return { ...state, menuList: action.payload};
       default:
         return state;
     }
   };
+
+
+  const fetchMenuListActionCreator = (data:any)=>{
+    return {
+      type: FETCH_MENU_LIST_SUCCESS,
+      payload: data
+    }
+  }
+
+
+  export const getMenuListActionCreator = ()=> async (dispatch:any, getState:any) => {
+  dispatch(fetchStartActionCreator());
+  try {
+    const { data } = await axios.get(
+      "http://localhost:5000/menu"
+    );
+    dispatch(fetchMenuListActionCreator(data));
+  //  setTimeout(()=>{
+      dispatch(fetchEndActionCreator());
+   // },2000);
+  } catch (error) {
+    //dispatch(fetchRecommendProductFailActionCreator(error.message));
+  }
+};
