@@ -1,8 +1,11 @@
 import React, {useEffect, useState} from 'react';
 import { useRouter } from "../util/GetRouter"
 import { useDispatch,useSelector } from "react-redux";
-import { getMenuListActionCreator } from "../redux/menu/MenuListReducer"
-import { getBannerActionCreator } from "../redux/banner/BannerReducer"
+// import { getMenuListActionCreator } from "../redux/menu/MenuListReducer"
+// import { getBannerActionCreator } from "../redux/banner/BannerReducer"
+import {getBannerAction} from  "../redux/banner/slice"
+import {getMenuAction} from  "../redux/menu/slice"
+
 
 
 //import {RootState} from "../redux/Store";
@@ -10,8 +13,8 @@ import { getBannerActionCreator } from "../redux/banner/BannerReducer"
 export const MenuList = () => {
 
     const { routerHistory } = useRouter();
-    const menuList = useSelector((state:any) => state.menu.menuList);
-    const banner = useSelector((state:any) => state.banner.home);
+    const menuList = useSelector((state:any) => state.menu.data);
+    const banner = useSelector((state:any) => state.banner.data);
     const loading  = useSelector((state:any) => state.common.loading);
     const mystate = useSelector((state:any) => state);
     const dispatch = useDispatch();
@@ -20,25 +23,24 @@ export const MenuList = () => {
 
     useEffect(()=>{
 
-      dispatch(getMenuListActionCreator());
+      dispatch(getMenuAction());
 
-      dispatch(getBannerActionCreator());
+      dispatch(getBannerAction());
 
     },[]);
 
-    useEffect(()=>{
-
-     // console.log(loading);
-
-    },[loading]);
+    // useEffect(()=>{
+    //     console.log("mystate");
+    //     console.log(mystate);
+    // },[mystate]);
 
   return (
     <div>
         <div>
-            <a href={banner.url}><img src={banner.image} /></a>
+            <a href={banner?.url}><img src={banner?.image} /></a>
         </div>
         {
-          console.log(loading)
+          //console.log(loading)
         }
         {
             loading === true ? <div>loading</div> :

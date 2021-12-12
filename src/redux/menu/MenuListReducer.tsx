@@ -26,14 +26,14 @@ import axios from "axios";
 
 
   export const getMenuListActionCreator = ()=> async (dispatch:any, getState:any) => {
-  dispatch(fetchStartActionCreator());
+  //dispatch(fetchStartActionCreator());
   try {
     const { data } = await axios.get(
       "http://localhost:5000/menu"
     );
     dispatch(fetchMenuListActionCreator(data));
   //  setTimeout(()=>{
-      dispatch(fetchEndActionCreator());
+     // dispatch(fetchEndActionCreator());
    // },2000);
   } catch (error) {
     //dispatch(fetchRecommendProductFailActionCreator(error.message));

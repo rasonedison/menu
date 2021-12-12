@@ -1,38 +1,11 @@
 
-// export interface LanguageState {
-//     language: "en" | "zh";
-//     languageList: { name: string; code: string }[];
-//   }
 import { fetchStartActionCreator,fetchEndActionCreator } from "../common/commonrReducer"
 import axios from "axios";
-
-  // interface BannerState {
-  //   home:{
-  //     id:number,
-  //     name: string,
-  //     url: string,
-  //     images: string
-  //   }
-
-  // }
-
-  // interface action {
-  //     type: string,
-  //     payload: any,
-  //   }
-  
 
   const FETCH_BANNER_SUCCESS = "FETCH_BANNER_SUCCESS";
   const FETCH_BANNER_HOME = "home";
 
-  const defaultState = {
-    home:{
-      id:1,
-      name: "string",
-      url: "string",
-      images: "string"
-    } 
-  }
+  const defaultState = {} // 不想再组建内使用 ? 那需要先初始化state
 
   const fetchBannerSuccessActionCreator = (data:any) =>{
     return {
@@ -42,9 +15,6 @@ import axios from "axios";
   }
    
   export default (state = defaultState, action:any) => {
-    // console.log("banner reducer:");
-    // //console.log(state);
-    // console.log(action.payload);
 
     switch (action.type) {
       case FETCH_BANNER_SUCCESS:
@@ -58,12 +28,12 @@ import axios from "axios";
 
 
   export const getBannerActionCreator = ()=> async (dispatch:any, getState:any) => {
-    dispatch(fetchStartActionCreator());
+   // dispatch(fetchStartActionCreator());
     try {
       const { data } = await axios.get(
         "http://localhost:8080/test"
       );
-      dispatch(fetchBannerSuccessActionCreator(data));
+    //  dispatch(fetchBannerSuccessActionCreator(data));
       //dispatch(fetchEndActionCreator());
     } catch (error) {
       console.log("fetch banner error");
